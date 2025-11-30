@@ -62,49 +62,50 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({data}) => {
   
   const isNight = now.getHours() < 6 || now.getHours() > 19;
   const bgGradient = isNight 
-    ? 'bg-gradient-to-br from-gray-800 to-gray-900'
-    : 'bg-gradient-to-br from-indigo-700 to-blue-500';
+    ? 'bg-gradient-to-br from-orange-400 to-orange-300'
+    : 'bg-gradient-to-br from-amber-700 to-amber-500';
   
   return(
     <div className={`w-full h-full p-8 rounded-2xl ${bgGradient} text-white shadow-2xl`}>
-      <div className=''>
-        <h3 className=''>СЕГА</h3>
-        <p className=''>{formattedDate} * {formattedTime}</p>
+      <div className='bg-linear-to-r from-amber-500 to-amber-400 hover:from-yellow-500 hover:to-yellow-400
+      text-white text-2xl text-shadow-2xs'>
+        <h3 className='flex justify-center  text-white text-2xl text-shadow-2xs'>Ye weather at this moment</h3>
+        <p className='flex justify-center'>{formattedDate}  {formattedTime}</p>
       </div>
       <div className='grid grid-cols-2 md:grid-cols-3 gap-6 items-center'>
         {/*current temp */}
         <div>
-          <span className={`text-6xl md:text-8xl transition-all duration-500`}>{icon}</span>
-          <p className=''>{Math.round(current.temperature_2m)}<sup className='text-4xl md:text-6xl'>°C</sup></p>
+     <span className={`text-6xl md:text-8xl transition-all duration-500`}>{icon}</span>
+          <p className='text-4xl md:text-4xl'>{Math.round(current.temperature_2m)}<sup className='text-4xl md:text-4xl'>°C</sup></p>
         </div> 
 
         {/* Feel */}
-        <div className=''>
-          <h2 className=''>{text}</h2>
-          <p className=''>Усеща се като: <span>{feelsLike}°C</span></p>
-          <p className=''>Вятър: {windDiretion} {current.wind_speed_10m}</p>
+        <div className='flex-col'>
+          <h2 className=' text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>{text}</h2>
+          <p className=' text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>Усеща се като: <span>{feelsLike}°C</span></p>
+          <p className=' text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>Вятър: {windDiretion}  o'clock {current.wind_speed_10m} knots</p>
         </div>
 
         {/* Max/Min */}
-        <div className=''>
-          <div className=''>
-            <span className=''>Макс. за деня</span>
-            <span className=''>{highTemp}</span>
+        <div className='flex-col'>
+          <div className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>
+            <span className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>The highest of the day </span>
+            <span className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>{highTemp}°C</span>
           </div>
-          <div className=''>
-            <span className=''>Мин. за деня</span>
-            <span className=''>{lowTemp}</span>
+          <div className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>
+            <span className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>The lowest of the day </span>
+            <span className='text-xl	transition duration-300 transform hover:scale-[1.05] shadow-2xl'>{lowTemp}°C</span>
           </div>
         </div>
       </div>
-      <div className=''>
-        <div className=''>
-          <p className=''>Часова зона</p>
-          <p className=''>{data.timezone.split('/')[1] || data.timezone}</p>
+      <div className='text-xl'>
+        <div className='text-xl'>
+          <p className='text-xl'>Часова зона</p>
+          <p className='text-xl'>{data.timezone.split('/')[1] || data.timezone}</p>
         </div>
-        <div className=''>
-          <p className=''>Код за времето</p>
-          <p className=''>{current.weather_code}</p>
+        <div className='text-xl	'>
+          <p className='text-xl	'>Код за времето</p>
+          <p className='text-xl	'>{current.weather_code}</p>
         </div>
       </div>
     </div>
@@ -148,7 +149,7 @@ export default function WeatherApp() {
 
   const renderContent = () => {
     
-    // 1. Loading State
+    // 1. Loading State NEDEJ PIPA CHE SSHA STANI LOSHO
     if (isLoading) {
       return (
         <div className="flex flex-col items-center justify-center h-full min-h-[300px] space-y-6">
@@ -180,17 +181,17 @@ export default function WeatherApp() {
     return <p className="text-gray-500 h-60 flex items-center justify-center">Няма налична прогноза за времето.</p>;
   };
 
-  // --- UI Layout (Tailwind) ---
+  // --- UI Layout (Tailwind) --- I TUKA NEDEJ PIPA
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="max-h max-w flex items-center justify-center">
       <div className="w-full max-w-4xl">
         
-        <header className="">
-            <h1 className="">
-                <span className="">Weather</span><span className="">App</span>
+        <header className=' '>
+            <h1 className=''>
+                <span className="flex justify-center">WEATHER</span><span className="flex justify-center">REPORT</span>
             </h1>
-            <h2 className="">
-                Начална Прогноза за {CITY_NAME}
+            <h2 className="flex justify-center">
+                WEATHER PROPHESY {CITY_NAME}
             </h2>
         </header>
 
